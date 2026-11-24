@@ -32,7 +32,7 @@ queries.
 
 ## GitHub build
 
-The Android debug APK is built by
+The standalone Android APK is built by
 [`.github/workflows/android-debug.yml`](./.github/workflows/android-debug.yml).
 
 Add these repository secrets under **Settings > Secrets and variables >
@@ -41,10 +41,12 @@ Actions**:
 - `SUPABASE_URL`
 - `SUPABASE_ANON_KEY`
 
-Push to `main` or run **Build Android debug APK** manually from the Actions tab.
-Download `LDCApp-debug-apk` from the completed workflow run, then transfer
-`app-debug.apk` to the Android phone and install it. GitHub Actions builds the
-APK but cannot directly install it on a physical phone.
+Push to `main` or run **Build standalone Android APK** manually from the Actions
+tab. Download `LDCApp-android-apk` from the completed workflow run, then
+transfer `app-release.apk` to the Android phone and install it. This release
+build includes the JavaScript bundle, so Metro does not need to be running.
+GitHub Actions builds the APK but cannot directly install it on a physical
+phone.
 
 Before pushing, keep `.env` and `.env.local` untracked. They are excluded by
 `.gitignore`; only the public values are added to GitHub Actions secrets.
