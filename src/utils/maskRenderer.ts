@@ -8,7 +8,13 @@ import { Skia, AlphaType, ColorType } from '@shopify/react-native-skia';
  */
 export function createSkiaMask(maskBase64: string, width = 256, height = 256) {
   try {
-    const rawBinary = atob(maskBase64);
+    const decodeBase64 = (globalThis as typeof globalThis & {
+      atob?: (value: string) => string;
+    }).atob;
+    if (!decodeBase64) {
+      throw new Error('Base64 decoding is unavailable in this runtime');
+    }
+    const rawBinary = decodeBase64(maskBase64);
     const pixelBytes = new Uint8Array(width * height * 4);
 
     // Populate RGBA pixels where Alpha is driven by the segmentation mask

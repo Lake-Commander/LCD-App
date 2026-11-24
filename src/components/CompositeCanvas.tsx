@@ -5,7 +5,6 @@ import {
   Image as SkiaImage,
   Paint,
   Group,
-  BlendMode,
   SkImage,
   Rect,
 } from '@shopify/react-native-skia';
@@ -95,7 +94,7 @@ export const CompositeCanvas: React.FC<CompositeCanvasProps> = ({
                 height={layout.height}
                 fit="contain"
               >
-                <Paint blendMode={BlendMode.DstIn} />
+                <Paint blendMode="dstIn" />
               </SkiaImage>
             )}
           </Group>
